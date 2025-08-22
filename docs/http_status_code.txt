@@ -1,0 +1,37 @@
+Mã Trạng Thái HTTP
+
+1xx Thông tin
+100 Tiếp tục - Server đã nhận được header yêu cầu và client nên tiếp tục với yêu cầu
+101 Chuyển đổi giao thức - Server đang chuyển đổi giao thức theo yêu cầu của client
+102 Đang xử lý - Server đang xử lý yêu cầu nhưng chưa có phản hồi
+
+2xx Thành công
+200 OK - Yêu cầu thành công
+201 Đã tạo - Yêu cầu được thực hiện và tài nguyên mới đã được tạo
+202 Đã chấp nhận - Yêu cầu được chấp nhận để xử lý nhưng chưa hoàn thành
+204 Không có nội dung - Server đã thực hiện yêu cầu nhưng không có nội dung để trả về
+206 Nội dung một phần - Server đang gửi nội dung một phần theo yêu cầu
+
+3xx Chuyển hướng
+300 Nhiều lựa chọn - Có nhiều tùy chọn để client chuyển hướng
+301 Chuyển vĩnh viễn - Tài nguyên đã được chuyển vĩnh viễn đến URL mới
+302 Đã tìm thấy - Tài nguyên tạm thời được chuyển đến URL khác
+304 Không thay đổi - Tài nguyên không thay đổi kể từ lần yêu cầu cuối
+307 Chuyển hướng tạm thời - Tài nguyên tạm thời được chuyển, giữ nguyên phương thức yêu cầu
+308 Chuyển hướng vĩnh viễn - Tài nguyên chuyển vĩnh viễn, giữ nguyên phương thức yêu cầu
+
+4xx Lỗi từ phía Client
+400 Yêu cầu không hợp lệ - Server không thể xử lý yêu cầu do lỗi từ client
+401 Chưa xác thực - Cần xác thực để truy cập tài nguyên
+403 Bị cấm - Server từ chối thực hiện yêu cầu
+404 Không tìm thấy - Không thể tìm thấy tài nguyên được yêu cầu
+405 Phương thức không được phép - Phương thức yêu cầu không được hỗ trợ cho tài nguyên
+409 Xung đột - Yêu cầu xung đột với trạng thái hiện tại của server
+429 Quá nhiều yêu cầu - Người dùng đã gửi quá nhiều yêu cầu trong khoảng thời gian cho phép
+
+5xx Lỗi từ phía Server
+500 Lỗi server nội bộ - Thông báo lỗi server chung
+501 Chưa được triển khai - Server không nhận ra phương thức hoặc không thể thực hiện
+502 Cổng kết nối xấu - Server nhận được phản hồi không hợp lệ từ server upstream
+503 Dịch vụ không khả dụng - Server tạm thời không khả dụng
+504 Cổng kết nối hết thời gian - Server upstream không phản hồi trong thời gian cho phép
