@@ -100,7 +100,6 @@ This project uses Husky to ensure code quality before commits and pushes:
 ### How it works:
 
 1. When you commit: `git commit -m "your message"`
-
    - Husky runs `lint-staged` on staged files
    - ESLint fixes errors automatically
    - Prettier formats code automatically

@@ -1,22 +1,21 @@
+import UsersController from '@/controllers/users.controllers'
 import { authenticateToken } from '@/middlewares/users.middlewares'
 import express from 'express'
 
 // import { needToBeSuperAdminRole, needToLogin } from '@/middlewares/index'
 
-import userController from './controller'
-
 const userRouter = express.Router()
 
 // Public routes (no authentication required)
-userRouter.post('/login', userController.login)
-userRouter.post('/register', userController.register)
-userRouter.post('/refresh-token', userController.refreshToken)
-userRouter.post('/logout', userController.logout)
+userRouter.post('/login', UsersController.login)
+userRouter.post('/register', UsersController.register)
+userRouter.post('/refresh-token', UsersController.refreshToken)
+userRouter.post('/logout', UsersController.logout)
 
 // Protected routes (authentication required)
-userRouter.get('/me', authenticateToken, userController.getMe)
+userRouter.get('/me', authenticateToken, UsersController.getMe)
 
-userRouter.get('/find-users', authenticateToken, userController.findUsersByName)
+userRouter.get('/find-users', authenticateToken, UsersController.findUsersByName)
 // userRouter.get('/verify/:token', userController.verify)
 // userRouter.get('/role/Admin', userController.getAllCreatorsByUsername)
 // userRouter.get('/:id', userController.getById)

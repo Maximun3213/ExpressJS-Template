@@ -2,7 +2,7 @@ name: CI/CD with Render
 
 on:
   push:
-    branches: [ main ]
+    branches: [main]
 
 jobs:
   deploy:
