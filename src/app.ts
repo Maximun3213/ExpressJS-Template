@@ -1,13 +1,15 @@
 import bodyParser from 'body-parser'
 import cookieParser from 'cookie-parser'
 import cors from 'cors'
-import express from 'express'
+import express, { NextFunction, Request, Response } from 'express'
 import helmet from 'helmet'
 import http from 'http'
 import morgan from 'morgan'
 import routerV1 from './apis/router'
 import env from './config/env.config'
+import { logAPI } from './config/log.config'
 import AUTH from './constants/auth'
+import STATUS_CODE from './constants/httpStatus'
 
 const app = express()
 
@@ -30,6 +32,16 @@ app.use(helmet())
 app.use(morgan('dev'))
 
 app.use('/api', routerV1)
+
+app.use((_: Request, response: Response, next: NextFunction) => {
+  const error = new Error('URL is not exist')
+
+  response.status(STATUS_CODE.NOT_FOUND)
+
+  next(error)
+})
+
+app.use(logAPI)
 
 const index = new http.Server(app)
 

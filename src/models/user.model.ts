@@ -1,9 +1,6 @@
 import { validateEmail, validatePassword } from '@/utils/validate'
 import mongoose, { Document, Model } from 'mongoose'
-// import { roles } from '../config/roles'
-// import { paginate, toJSON } from './plugins'
 
-// Define the User interface
 export interface IUser extends Document {
   id: string
   name: string
@@ -17,7 +14,6 @@ export interface IUser extends Document {
   updatedAt: Date
 }
 
-// Define static methods interface
 export interface IUserModel extends Model<IUser> {
   isEmailTaken(email: string, excludeUserId?: mongoose.Types.ObjectId): Promise<boolean>
 }
@@ -47,7 +43,7 @@ const userSchema = new mongoose.Schema(
       validate(value) {
         validatePassword(value)
       },
-      private: true // used by the toJSON plugin
+      private: true
     },
     avatar: {
       type: String,
@@ -59,7 +55,6 @@ const userSchema = new mongoose.Schema(
     },
     role: {
       type: String,
-      //   enum: roles,
       default: 'user'
     },
     isEmailVerified: {
@@ -72,27 +67,10 @@ const userSchema = new mongoose.Schema(
   }
 )
 
-// add plugin that converts mongoose to json
-// userSchema.plugin(toJSON)
-// userSchema.plugin(paginate)
-
 userSchema.statics.isEmailTaken = async function (email, excludeUserId) {
   const user = await this.findOne({ email, _id: { $ne: excludeUserId } })
   return !!user
 }
-
-// userSchema.methods.isPasswordMatch = async function (password) {
-//   const user = this
-//   return bcrypt.compare(password, user.password)
-// }
-
-// userSchema.pre('save', async function (next) {
-//   const user = this
-//   if (user.isModified('password')) {
-//     user.password = await bcrypt.hash(user.password, 8)
-//   }
-//   next()
-// })
 
 const UserModel = mongoose.model<IUser, IUserModel>('Users', userSchema)
 

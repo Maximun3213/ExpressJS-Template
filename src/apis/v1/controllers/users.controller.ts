@@ -54,7 +54,6 @@ export default class UsersController {
 
     await UserModel.findByIdAndUpdate(user._id, { refreshToken })
 
-    // Set new cookies for tokens
     res.cookie('accessToken', accessToken, {
       httpOnly: true,
       secure: true,
