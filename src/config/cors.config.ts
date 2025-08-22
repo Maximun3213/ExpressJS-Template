@@ -2,12 +2,13 @@ import AUTH from '@/constants/auth'
 import cors from 'cors'
 import env from './env.config'
 
+const LOCAL_URL = 'http://localhost:3000'
+
 const corsConfig = cors({
   origin: (origin, callback) => {
     if (!origin) return callback(null, true)
 
-    const allowedOrigins =
-      env.ENVIRONMENT === 'production' ? ['http://localhost:3000', env.CLIENT_URL] : ['http://localhost:3000']
+    const allowedOrigins = env.ENVIRONMENT === 'production' ? [LOCAL_URL, env.CLIENT_URL] : [LOCAL_URL]
 
     if (allowedOrigins.includes(origin)) {
       return callback(null, true)
